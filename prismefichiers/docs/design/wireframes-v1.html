@@ -1,0 +1,705 @@
+<title>Wireframes Prisme</title>
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   WIREFRAMES BASSE FIDÉLITÉ — Prisme, boucle 5
+   Un seul fichier HTML. Aucun script, aucune image, aucun asset externe.
+
+   Le système de design de la boucle 3 n'est PAS appliqué ici, et c'est
+   délibéré : mêler structure et apparence rendrait les problèmes de
+   structure invisibles. Gris uniquement, aucune couleur de marque.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  color-scheme:light;
+  --f:#FFFFFF;       /* fond de planche */
+  --p:#F2F2F0;       /* plan */
+  --z:#E6E6E3;       /* zone / remplissage */
+  --t:#D2D2CE;       /* trait de texte simulé */
+  --b:#9A9A95;       /* bordure */
+  --bf:#6E6E69;      /* bordure forte */
+  --e:#2B2B29;       /* encre */
+  --e2:#63635E;      /* encre secondaire */
+  --e3:#8C8C87;      /* encre faible */
+  --page:#FAFAF8;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --f:#1C1C1A; --p:#232321; --z:#2E2E2B; --t:#3C3C38;
+  --b:#66665F; --bf:#8C8C85; --e:#EDEDE9; --e2:#B0B0A9; --e3:#85857E; --page:#111110;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --f:#1C1C1A; --p:#232321; --z:#2E2E2B; --t:#3C3C38;
+  --b:#66665F; --bf:#8C8C85; --e:#EDEDE9; --e2:#B0B0A9; --e3:#85857E; --page:#111110;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--e);
+  font:400 15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1120px;margin:0 auto;padding:32px 24px 80px}
+
+h1{font-size:30px;line-height:1.15;margin:0 0 10px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:20px;margin:0 0 4px;letter-spacing:-.012em}
+h2 em{font-style:normal;color:var(--e3);font-weight:400}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--e3);margin:28px 0 10px}
+p{margin:0 0 12px}
+.lede{max-width:70ch;color:var(--e2)}
+.lede b{color:var(--e)}
+section{margin:0 0 56px;padding-top:8px;border-top:1px solid var(--z)}
+section:first-of-type{border-top:0}
+header.intro{margin-bottom:40px}
+
+/* Bandeau de correspondance / collision */
+.map{border:1px solid var(--b);border-radius:4px;padding:10px 12px;margin:12px 0 20px;
+  font-size:13px;line-height:1.45;max-width:78ch;background:var(--f)}
+.map b{font-weight:600}
+.map--x{border-left:4px solid var(--bf)}
+.map__k{display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--e3);margin-bottom:4px}
+
+/* Planches */
+.planches{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.cadre{border:1px solid var(--bf);background:var(--f);border-radius:2px;position:relative}
+.cadre__t{position:absolute;top:-9px;left:10px;background:var(--page);padding:0 6px;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--e3)}
+.mob{width:330px}
+.bur{width:100%;max-width:1000px}
+
+/* Chrome interne */
+.barre{border-bottom:1px solid var(--b);padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:12px}
+.barre--bas{border-bottom:0;border-top:1px solid var(--b)}
+.ecran{padding:12px}
+.nav{display:flex;border-top:1px solid var(--b)}
+.nav div{flex:1;text-align:center;padding:9px 2px;font-size:10px;color:var(--e3);border-right:1px solid var(--z)}
+.nav div:last-child{border-right:0}
+.nav div[data-on]{color:var(--e);font-weight:600;box-shadow:inset 0 2px 0 var(--e)}
+
+/* Primitives de wireframe */
+.bloc{border:1px solid var(--b);border-radius:3px;padding:10px;margin-bottom:8px;background:var(--f)}
+.bloc--z{background:var(--z)}
+.bloc--d{border-style:dashed}
+.ln{height:7px;background:var(--t);border-radius:2px;margin:6px 0}
+.vig{width:22px;height:22px;border:1px solid var(--b);border-radius:3px;flex:none;background:var(--z);
+  display:grid;place-items:center;font-size:8px;color:var(--e3)}
+.vig--g{width:56px;height:56px;font-size:10px}
+.vig--xl{width:100%;height:96px;border-radius:4px;font-size:11px;
+  background:repeating-linear-gradient(135deg,var(--z) 0 8px,var(--f) 8px 16px)}
+.r{display:flex;align-items:center;gap:8px}
+.sp{margin-left:auto}
+.mini{font-size:11px;color:var(--e3)}
+.mini2{font-size:12px;color:var(--e2)}
+.ttl{font-size:14px;font-weight:600;line-height:1.3;margin:0 0 4px}
+.ttl--s{font-size:13px;font-weight:500}
+.btn{display:inline-block;border:1px solid var(--bf);border-radius:4px;padding:6px 12px;font-size:12px}
+.btn--p{background:var(--e);color:var(--f);border-color:var(--e)}
+.btn--s{border-style:solid}
+.seg{display:flex;border:1px solid var(--b);border-radius:4px;overflow:hidden;font-size:11px;margin-bottom:10px}
+.seg div{flex:1;text-align:center;padding:6px 4px;border-right:1px solid var(--z);color:var(--e3);white-space:nowrap}
+.seg div:last-child{border-right:0}
+.seg div[data-on]{background:var(--z);color:var(--e);font-weight:600}
+.jauge{height:6px;background:var(--z);border-radius:3px;overflow:hidden;border:1px solid var(--b)}
+.jauge i{display:block;height:100%;background:var(--bf);width:60%}
+.pano{display:flex;gap:2px;height:16px;margin:8px 0}
+.pano span{border:1px solid var(--b);font-size:8px;display:grid;place-items:center;color:var(--e2);overflow:hidden}
+.pano--f{height:6px}
+.pano--f span{border-width:1px}
+.hach{background:repeating-linear-gradient(45deg,var(--b) 0 1.5px,transparent 1.5px 6px);
+  padding:2px;border-radius:4px}
+.hach__i{background:var(--f);border-radius:3px;padding:9px}
+.recul{opacity:.55}
+.frise{position:relative;height:8px;background:var(--z);border:1px solid var(--b);border-radius:4px;margin:14px 0 6px}
+.frise i{position:absolute;left:0;top:0;bottom:0;width:38%;background:var(--bf);border-radius:3px}
+.frise b{position:absolute;top:-4px;width:2px;height:14px;background:var(--e2)}
+.mins{display:flex;justify-content:space-between;font-size:11px;color:var(--e3);font-variant-numeric:tabular-nums}
+.ctrl{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0}
+.rond{width:40px;height:40px;border:1px solid var(--bf);border-radius:50%;display:grid;place-items:center;font-size:11px}
+.rond--s{width:28px;height:28px;font-size:10px}
+.col{max-width:52ch;margin:0 auto}
+.surimp{border:1px solid var(--bf);border-radius:6px;background:var(--f);
+  box-shadow:0 0 0 9999px rgba(0,0,0,.06)}
+.derriere{background:var(--p);padding:10px;border:1px dashed var(--b);border-radius:4px}
+.marq{display:inline-grid;place-items:center;width:16px;height:16px;border:1px solid var(--e);
+  border-radius:50%;font-size:9px;font-weight:700;vertical-align:1px;flex:none}
+.fin{text-align:center;font-size:11px;color:var(--e3);border-top:1px dashed var(--b);padding-top:8px;margin-top:4px}
+.vide{text-align:center;padding:34px 12px}
+.vide b{display:block;font-size:15px;margin-bottom:4px}
+
+/* Légendes d'annotation */
+.leg{margin:14px 0 0;padding:0;list-style:none;font-size:13px;max-width:78ch}
+.leg li{display:flex;gap:9px;padding:5px 0;border-bottom:1px solid var(--z);color:var(--e2)}
+.leg li:last-child{border-bottom:0}
+.leg b{color:var(--e);font-weight:600}
+.leg .marq{margin-top:2px}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+.tbl th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--e3);
+  font-weight:600;padding:0 14px 6px 0;border-bottom:1px solid var(--b)}
+.tbl td{padding:8px 14px 8px 0;border-bottom:1px solid var(--z);vertical-align:top;color:var(--e2)}
+.tbl td:first-child{color:var(--e);font-weight:500;white-space:nowrap}
+.tbl-env{overflow-x:auto}
+footer{border-top:1px solid var(--z);margin-top:48px;padding-top:20px;font-size:13px;color:var(--e3);max-width:74ch}
+</style>
+
+<div class="w">
+
+<header class="intro">
+  <h1>Wireframes basse fidélité</h1>
+  <p class="lede"><b>Prisme — boucle 5.</b> Un seul fichier HTML : aucun script, aucune image, aucun asset externe. Le système de design de la boucle 3 n'est <b>pas</b> appliqué — gris uniquement, aucune couleur de marque, aucune police de lecture. Mêler structure et apparence à ce stade rendrait les problèmes de structure invisibles ; un wireframe existe pour qu'on puisse se disputer sur l'ossature sans se disputer sur la couleur.</p>
+  <p class="lede">Quatre des sept écrans demandés portent des noms que l'architecture a explicitement refusés. Chaque planche indique donc sa <b>correspondance réelle</b>, et les quatre collisions sont traitées à découvert plutôt que renommées en silence.</p>
+
+  <div class="tbl-env"><table class="tbl">
+    <thead><tr><th>Demandé</th><th>Ce qui existe</th><th>Nature</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td>Aujourd'hui</td><td>Destination ① — correspondance directe</td></tr>
+      <tr><td>Feed</td><td>Sujets</td><td><b>Collision.</b> Un inventaire, pas un flux</td></tr>
+      <tr><td>Topic</td><td>Sujet {id}</td><td>Vue contextuelle — correspondance directe</td></tr>
+      <tr><td>Podcast</td><td>Lecteur étendu + file d'écoute</td><td><b>Collision partielle.</b> Le podcast est une nature de source, pas une destination</td></tr>
+      <tr><td>Article</td><td>Item {id}</td><td><b>Collision.</b> Superposition, jamais une page</td></tr>
+      <tr><td>Discover</td><td>Panorama → angle mort</td><td><b>Collision.</b> Aucune destination « Découvrir » n'existe</td></tr>
+      <tr><td>Library</td><td>Bibliothèque</td><td>Destination ③ — correspondance directe</td></tr>
+    </tbody>
+  </table></div>
+</header>
+
+
+<!-- ═══════════════ 1. HOME ═══════════════ -->
+<section>
+  <h2>1 · Home <em>→ Aujourd'hui</em></h2>
+  <div class="map"><span class="map__k">Correspondance directe</span>
+    Destination ①, par défaut. Ce n'est pas une page mais une <b>machine à états</b> : déclaration de budget → briefing → fin. Les trois états sont dessinés ci-dessous, parce que le troisième est celui qu'on oublie de construire.</div>
+
+  <div class="planches">
+
+    <div class="cadre mob"><span class="cadre__t">Mobile · briefing</span>
+      <div class="barre"><b style="font-size:13px">Aujourd'hui</b><span class="sp mini">⌕</span></div>
+      <div class="ecran">
+        <div class="r" style="margin-bottom:6px">
+          <span style="font-size:12px;font-weight:600">6 min restantes</span>
+          <span class="sp mini">3 sujets</span>
+        </div>
+        <div class="jauge"><i></i></div>
+        <p class="mini" style="margin:6px 0 12px">↓ décroît · aucun autre compteur dans l'app</p>
+
+        <div class="bloc">
+          <div class="r"><span class="vig">LM</span><span class="vig">AF</span><span class="vig">+9</span>
+            <span class="sp mini">3 min</span></div>
+          <p class="ttl" style="margin-top:8px">Révision du plafond d'émissions industrielles</p>
+          <div class="ln" style="width:96%"></div><div class="ln" style="width:72%"></div>
+          <div class="pano pano--f">
+            <span style="flex:22"></span><span style="flex:31"></span><span style="flex:27"></span><span style="flex:20"></span>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <div class="r"><span class="vig">CT</span><span class="vig">+4</span><span class="sp mini">2 min</span></div>
+          <p class="ttl" style="margin-top:8px">Marché obligataire — reprise des adjudications</p>
+          <div class="ln" style="width:88%"></div>
+        </div>
+
+        <div class="hach" style="margin-bottom:8px">
+          <div class="hach__i">
+            <div class="r"><span class="vig">RE</span><span class="sp mini">1 min</span></div>
+            <p class="ttl--s" style="margin:8px 0 4px">Accord céréalier — session de Genève</p>
+            <p class="mini">Rapproché — non confirmé</p>
+            <div class="r" style="gap:6px;margin-top:8px">
+              <span class="btn">Confirmer</span><span class="btn">Séparer</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="fin">Fin de la file · 6 min</p>
+      </div>
+      <div class="barre barre--bas"><span class="vig">▶</span>
+        <span style="font-size:11px">Plafond d'émissions</span><span class="sp mini">❚❚</span></div>
+      <div class="nav"><div data-on>Aujourd'hui</div><div>Sujets</div><div>Bibliothèque</div><div>Sources</div></div>
+    </div>
+
+    <div class="cadre mob"><span class="cadre__t">État terminal · file vide</span>
+      <div class="barre"><b style="font-size:13px">Aujourd'hui</b></div>
+      <div class="ecran">
+        <div class="vide">
+          <b>C'est tout.</b>
+          <span class="mini2">7 sujets bouclés.</span>
+        </div>
+        <div class="bloc bloc--d" style="text-align:center">
+          <p class="mini" style="margin:0">Aucune action proposée.<br>Aucun rechargement.<br>Aucune illustration, aucun trophée.</p>
+        </div>
+      </div>
+      <div class="nav"><div data-on>Aujourd'hui</div><div>Sujets</div><div>Bibliothèque</div><div>Sources</div></div>
+    </div>
+
+    <div class="cadre mob"><span class="cadre__t">Reprise après absence &gt; 48 h</span>
+      <div class="barre"><b style="font-size:13px">Aujourd'hui</b></div>
+      <div class="ecran">
+        <div class="bloc">
+          <p class="ttl">Vous avez été absent 4 jours.</p>
+          <p class="mini2" style="margin:0 0 10px">31 sujets sont entrés. En voici 5 qui comptent encore.</p>
+          <div class="r" style="gap:6px">
+            <span class="btn btn--p">Reprendre en 8 min</span>
+            <span class="btn">Repartir à neuf</span>
+          </div>
+        </div>
+        <div class="bloc bloc--d">
+          <p class="mini" style="margin:0">Les 26 autres sont soldés, pas reportés.<br>La dette n'est jamais présentée comme un retard.</p>
+        </div>
+      </div>
+      <div class="nav"><div data-on>Aujourd'hui</div><div>Sujets</div><div>Bibliothèque</div><div>Sources</div></div>
+    </div>
+
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Un seul compteur, et il décroît.</b> « 6 min restantes », jamais « 4 sur 10 ». Budget dépassé : la jauge reste à zéro, sans rouge ni notion de retard.</span></li>
+    <li><span class="marq">2</span><span><b>La file se termine explicitement.</b> « Fin de la file » est un élément dessiné, pas une absence d'éléments. Rien ne se recharge en bas.</span></li>
+    <li><span class="marq">3</span><span><b>Le rapprochement non confirmé est hachuré, jamais fusionné</b> — et il porte ses deux actions. Aucune teinte d'alerte : le système fait son travail en refusant de fusionner sous le seuil.</span></li>
+    <li><span class="marq">4</span><span><b>L'état terminal est une planche à part entière.</b> C'est le moment où le produit tient sa promesse ; le laisser hors des wireframes garantit qu'il sera bâclé.</span></li>
+    <li><span class="marq">5</span><span><b>Le pardon de l'absence</b> propose un condensé et solde le reste. C'est la seule planche où cette fonctionnalité est visible — elle ne se démontre jamais en usage normal.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 2. FEED ═══════════════ -->
+<section>
+  <h2>2 · Feed <em>→ Sujets</em></h2>
+  <div class="map map--x"><span class="map__k">Collision</span>
+    <b>Il n'existe pas de flux dans ce produit.</b> La décision A2 de la boucle 2 supprime toute vue « tous les articles par ordre chronologique ». Ce que « Feed » désigne ici, c'est la destination ② — un <b>inventaire</b> : dense, filtré par statut, trié par vivacité du sujet, et paginé explicitement. Un flux aurait cassé trois choses d'un coup : l'unité événement, la finitude, et l'absence de compteur de non-lus.</div>
+
+  <div class="planches">
+    <div class="cadre bur"><span class="cadre__t">Bureau · densité dense</span>
+      <div class="barre"><b style="font-size:13px">Sujets</b>
+        <span class="sp mini">⌕ Rechercher</span></div>
+      <div class="ecran">
+        <div class="seg" style="max-width:520px">
+          <div>Nouveaux 〈8〉</div><div data-on>En cours</div><div>Bouclés</div><div>Rouverts</div><div>Écartés ▸</div>
+        </div>
+        <p class="mini" style="margin:-4px 0 10px">Trié par vivacité du sujet · groupé par aucun</p>
+
+        <div class="bloc" style="padding:0">
+          <div class="r" style="padding:8px 10px;border-bottom:1px solid var(--z)">
+            <span class="vig">LM</span><span class="vig">AF</span>
+            <span class="ttl--s" style="flex:1;margin:0">Révision du plafond d'émissions industrielles</span>
+            <span class="pano pano--f" style="width:90px;margin:0">
+              <span style="flex:22"></span><span style="flex:31"></span><span style="flex:27"></span><span style="flex:20"></span></span>
+            <span class="mini" style="width:70px;text-align:right">11 éditeurs</span>
+            <span class="mini" style="width:44px;text-align:right">3 min</span>
+          </div>
+          <div class="r" style="padding:8px 10px;border-bottom:1px solid var(--z);background:var(--z)">
+            <span class="vig">CT</span><span class="vig">+4</span>
+            <span class="ttl--s" style="flex:1;margin:0">Marché obligataire — reprise des adjudications</span>
+            <span class="pano pano--f" style="width:90px;margin:0">
+              <span style="flex:40"></span><span style="flex:35"></span><span style="flex:25"></span></span>
+            <span class="mini" style="width:70px;text-align:right">6 éditeurs</span>
+            <span class="mini" style="width:44px;text-align:right">2 min</span>
+          </div>
+          <div class="r recul" style="padding:8px 10px;border-bottom:1px solid var(--z)">
+            <span class="vig">RE</span>
+            <span class="ttl--s" style="flex:1;margin:0">✓ Accord céréalier — session de Genève</span>
+            <span class="mini" style="width:90px">bouclé mardi</span>
+            <span class="mini" style="width:70px;text-align:right">5 éditeurs</span>
+            <span class="mini" style="width:44px;text-align:right">—</span>
+          </div>
+          <div style="padding:6px 10px">
+            <div class="hach"><div class="hach__i r" style="padding:6px 8px">
+              <span class="vig">XX</span>
+              <span class="ttl--s" style="flex:1;margin:0">Sommet de Genève — délégation ukrainienne</span>
+              <span class="mini">Rapproché — non confirmé</span>
+              <span class="btn" style="padding:3px 8px">Confirmer</span>
+              <span class="btn" style="padding:3px 8px">Séparer</span>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="r" style="justify-content:center;margin-top:12px">
+          <span class="btn">Afficher 50 de plus</span>
+        </div>
+        <p class="mini" style="text-align:center;margin-top:8px">Pagination explicite — aucun défilement infini</p>
+
+        <div class="bloc bloc--d" style="margin-top:14px">
+          <p class="mini" style="margin:0"><b>Clavier de premier rang :</b> ↑↓ parcourir · espace sélectionner · ⇧↑↓ étendre · ⌫ écarter · ⏎ ouvrir</p>
+        </div>
+      </div>
+      <div class="nav"><div>Aujourd'hui</div><div data-on>Sujets</div><div>Bibliothèque</div><div>Sources</div></div>
+    </div>
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Les segments filtrent par statut, pas par thème.</b> Le nombre en regard de « Nouveaux » est un effectif de filtre, pas un badge de non-lus : il ne s'affiche nulle part ailleurs et ne remonte jamais dans la navigation.</span></li>
+    <li><span class="marq">2</span><span><b>Une rangée = un sujet, jamais un article.</b> Le nombre d'éditeurs remplace ce qu'un lecteur RSS afficherait comme autant de lignes distinctes.</span></li>
+    <li><span class="marq">3</span><span><b>Un sujet bouclé recule</b> — atténué, coche neutre, pas de couleur. La clôture est un apaisement, pas un point marqué.</span></li>
+    <li><span class="marq">4</span><span><b>Pagination explicite.</b> Le défilement infini contredit frontalement la promesse de finitude, et c'est ici qu'il serait le plus tentant.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 3. TOPIC ═══════════════ -->
+<section>
+  <h2>3 · Topic <em>→ Sujet {id} · onglet Synthèse</em></h2>
+  <div class="map"><span class="map__k">Correspondance directe — le cœur du produit</span>
+    Cinq vues contextuelles, dont Synthèse par défaut. C'est ici que se jouent les deux conditions décisives de la North Star : la substance et la clôture.</div>
+
+  <div class="planches">
+    <div class="cadre bur" style="max-width:640px"><span class="cadre__t">Bureau · densité ample</span>
+      <div class="barre"><span class="mini">‹ Sujets</span><span class="sp mini">⋯</span></div>
+      <div class="ecran">
+        <div class="r" style="margin-bottom:8px">
+          <span class="vig">LM</span><span class="vig">AF</span><span class="vig">CT</span><span class="vig">+8</span>
+          <span class="mini sp">Actif · dernier fait il y a 4 h</span>
+        </div>
+        <p style="font-size:19px;font-weight:600;line-height:1.25;margin:0 0 12px">Révision du plafond d'émissions industrielles</p>
+
+        <div class="seg" style="max-width:440px">
+          <div data-on>Synthèse</div><div>Chronologie</div><div>Panorama</div><div>Couverture</div><div>Mes traces</div>
+        </div>
+
+        <div class="r" style="gap:8px;margin:12px 0">
+          <span class="seg" style="margin:0;width:auto">
+            <span class="btn" style="border:0;border-right:1px solid var(--z);border-radius:0">30 s</span>
+            <span class="btn" style="border:0;border-right:1px solid var(--z);border-radius:0;background:var(--z);font-weight:600">3 min</span>
+            <span class="btn" style="border:0;border-radius:0">Intégral</span>
+          </span>
+          <span class="sp"></span>
+          <span class="btn">Lire ⇄ Écouter</span>
+        </div>
+
+        <div class="bloc">
+          <p style="font-size:14px;line-height:1.6;margin:0 0 10px">
+            Le texte adopté jeudi relève le plafond de 12 %<sup style="font-size:10px">1</sup>, une hausse
+            que deux des trois rapporteurs jugent insuffisante<sup style="font-size:10px">2</sup>.
+          </p>
+          <div class="ln" style="width:97%"></div><div class="ln" style="width:99%"></div>
+          <div class="ln" style="width:64%"></div>
+          <p style="font-size:14px;line-height:1.6;margin:10px 0 0">
+            L'application est repoussée à 2029<sup style="font-size:10px">3</sup>.
+          </p>
+        </div>
+
+        <div class="bloc bloc--z" style="border-style:solid">
+          <p class="mini" style="margin:0 0 4px"><b>Citation 1 — dépliée</b></p>
+          <p class="mini2" style="margin:0">« … relève le plafond de 12 % à compter de l'exercice suivant … »</p>
+          <p class="mini" style="margin:6px 0 0"><em>Le Monde</em> · 14 août · § 4 · <span style="text-decoration:underline">ouvrir l'article ↗</span></p>
+        </div>
+
+        <div class="bloc bloc--d">
+          <p class="mini" style="margin:0"><b>Repli si la synthèse n'est pas servable :</b> « Synthèse indisponible — une source citée a été retirée. » puis la liste des 11 items. Jamais de texte amputé.</p>
+        </div>
+
+        <div class="r" style="gap:8px;margin-top:12px">
+          <span class="btn btn--p">Boucler ce sujet</span>
+          <span class="btn">Reporter à…</span>
+          <span class="btn">Écarter</span>
+          <span class="sp mini">Substance atteinte ✓</span>
+        </div>
+      </div>
+      <div class="nav"><div>Aujourd'hui</div><div data-on>Sujets</div><div>Bibliothèque</div><div>Sources</div></div>
+    </div>
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Le sélecteur de durée est le premier geste possible.</b> « Un temps que j'ai décidé à l'avance » est la promesse centrale du produit — elle doit être atteignable avant toute lecture.</span></li>
+    <li><span class="marq">2</span><span><b>Chaque assertion porte son appel de citation.</b> Une assertion sans citation n'est pas rendue : le composant lève une erreur plutôt que d'afficher du texte orphelin.</span></li>
+    <li><span class="marq">3</span><span><b>« Reporter à… » exige une échéance.</b> Il n'existe pas de bouton « plus tard » sans date — une pile sans échéance est la dette informationnelle elle-même.</span></li>
+    <li><span class="marq">4</span><span><b>« Substance atteinte »</b> est un état discret, pas une récompense. Boucler reste possible sans lui, mais l'enregistrement diffère : ce sera « écarté », pas « bouclé ».</span></li>
+    <li><span class="marq">5</span><span><b>Le repli d'indisponibilité est dessiné.</b> C'est le chemin d'échec que tout produit masque, et celui qui décide si l'attribution est un principe ou un slogan.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 4. PODCAST ═══════════════ -->
+<section>
+  <h2>4 · Podcast <em>→ Lecteur étendu + file d'écoute</em></h2>
+  <div class="map map--x"><span class="map__k">Collision partielle</span>
+    Le podcast est une <b>nature de source</b>, pas une destination : il n'a pas d'écran à lui. Ce que « Podcast » désigne ici, c'est la <b>couche temporelle</b> — le lecteur et sa file, qui traitent indifféremment un épisode natif et un article lu en synthèse vocale. Un podcast en tant qu'abonnement vit dans <code>Sources/{id}</code>.</div>
+
+  <div class="planches">
+
+    <div class="cadre mob"><span class="cadre__t">Lecteur étendu</span>
+      <div class="barre"><span class="mini">⌄ Réduire</span><span class="sp mini">⋯</span></div>
+      <div class="ecran">
+        <div class="vig vig--xl" style="display:grid;place-items:center">vignette éditeur</div>
+        <p class="ttl" style="margin-top:12px">Révision du plafond d'émissions industrielles</p>
+        <p class="mini" style="margin:0 0 4px"><em>Le Monde</em> · synthèse intégrale · voix de synthèse</p>
+
+        <div class="frise"><i></i><b style="left:22%"></b><b style="left:57%"></b><b style="left:81%"></b></div>
+        <div class="mins"><span>18:24</span><span>−30:06</span></div>
+        <p class="mini" style="margin:6px 0 0">▮ jalons de l'<b>événement</b> — pas les chapitres du fichier</p>
+
+        <div class="ctrl">
+          <span class="rond rond--s">↺15</span>
+          <span class="rond">❚❚</span>
+          <span class="rond rond--s">30↻</span>
+        </div>
+
+        <div class="r" style="gap:6px;flex-wrap:wrap">
+          <span class="btn">1,4×</span><span class="btn">Silences</span><span class="btn">Minuterie</span>
+          <span class="btn btn--s">⚑ Marquer un passage</span>
+        </div>
+        <p class="mini" style="margin-top:8px">Marquer ancre l'annotation à <b>−15 s</b> : on réagit après avoir entendu.</p>
+
+        <div class="bloc bloc--d" style="margin-top:12px">
+          <p class="mini" style="margin:0"><b>Lire ⇄ Écouter</b> — conserve l'ancrage.<br>Au basculement : « reprise à 4 min 12 ».</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cadre mob"><span class="cadre__t">File d'écoute</span>
+      <div class="barre"><b style="font-size:13px">File d'écoute</b><span class="sp mini">6 min</span></div>
+      <div class="ecran">
+        <div class="bloc" style="padding:0">
+          <div class="r" style="padding:9px 10px;border-bottom:1px solid var(--z)">
+            <span class="mini">⠿</span><span class="mini" style="width:12px">1</span>
+            <span class="ttl--s" style="flex:1;margin:0">Plafond d'émissions</span>
+            <span class="mini">3 min</span><span class="mini">♪</span>
+          </div>
+          <div class="r" style="padding:9px 10px;border-bottom:1px solid var(--z)">
+            <span class="mini">⠿</span><span class="mini" style="width:12px">2</span>
+            <span class="ttl--s" style="flex:1;margin:0">Marché obligataire</span>
+            <span class="mini">2 min</span><span class="mini">⏳</span>
+          </div>
+          <div class="r" style="padding:9px 10px">
+            <span class="mini">⠿</span><span class="mini" style="width:12px">3</span>
+            <span class="ttl--s" style="flex:1;margin:0">Accord céréalier</span>
+            <span class="mini">1 min</span><span class="mini">♪</span>
+          </div>
+        </div>
+        <p class="fin">Fin de la file · aucune lecture automatique au-delà</p>
+        <div class="bloc bloc--d">
+          <p class="mini" style="margin:0">⏳ = synthèse vocale en cours de génération.<br>On enchaîne sur le suivant, aucune attente imposée.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cadre mob" style="width:250px"><span class="cadre__t">Verrouillé / CarPlay</span>
+      <div class="ecran" style="padding:16px">
+        <div class="vig vig--g" style="width:100%;height:70px;display:grid;place-items:center;font-size:10px">vignette</div>
+        <p class="ttl--s" style="margin:10px 0 2px">Plafond d'émissions</p>
+        <p class="mini" style="margin:0 0 10px">18:24</p>
+        <div class="ctrl" style="margin:8px 0"><span class="rond rond--s">↺15</span><span class="rond">❚❚</span><span class="rond rond--s">30↻</span></div>
+        <div style="text-align:center"><span class="btn">⚑ Marquer</span></div>
+        <p class="mini" style="margin-top:10px;text-align:center">Le contexte où l'on annote le plus,<br>et où l'on peut le moins.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Les repères de la frise sont les jalons de l'événement</b>, pas les chapitres du fichier audio. On navigue dans un sujet, pas dans un média — c'est le seul endroit du produit où cette différence est visible.</span></li>
+    <li><span class="marq">2</span><span><b>La file mêle audio natif et texte vocalisé.</b> Un article et un épisode occupent la même rangée : c'est la conséquence directe d'une position canonique unique.</span></li>
+    <li><span class="marq">3</span><span><b>« Fin de la file » est dessiné.</b> C'est exactement là que tout concurrent audio enchaîne sur autre chose.</span></li>
+    <li><span class="marq">4</span><span><b>Une synthèse vocale non prête ne bloque jamais.</b> Une roue de chargement dans un contexte mains-occupées est un échec fonctionnel, pas une gêne.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 5. ARTICLE ═══════════════ -->
+<section>
+  <h2>5 · Article <em>→ Item {id}, en superposition</em></h2>
+  <div class="map map--x"><span class="map__k">Collision</span>
+    <b>Un article n'est jamais une destination de premier rang</b> (décision A2). On n'y accède que par son sujet — ou par la Bibliothèque si on l'a déjà annoté. Le wireframe le montre donc <b>au-dessus</b> du sujet, refermable sans perte, avec la route <code>/sujets/:id/item/:itemId</code>.</div>
+
+  <div class="planches">
+    <div class="cadre bur" style="max-width:640px"><span class="cadre__t">Superposition au-dessus du Sujet</span>
+      <div class="ecran" style="background:var(--p)">
+        <div class="derriere">
+          <p class="mini" style="margin:0 0 6px">Sujet · Synthèse (conservé dessous, intact)</p>
+          <div class="ln" style="width:70%"></div><div class="ln" style="width:90%"></div>
+        </div>
+
+        <div class="surimp" style="margin-top:10px">
+          <div class="barre"><span class="vig">LM</span>
+            <span style="font-size:12px"><em>Le Monde</em> · 14 août · 6 min</span>
+            <span class="sp mini">✕ Fermer</span></div>
+          <div class="ecran">
+            <div class="col">
+              <p style="font-size:17px;font-weight:600;line-height:1.3;margin:0 0 4px">Le Parlement relève le plafond d'émissions de 12 %</p>
+              <p class="mini" style="margin:0 0 14px">Par la rédaction · mis à jour il y a 4 h</p>
+              <div class="ln" style="width:99%"></div><div class="ln" style="width:97%"></div>
+              <div class="ln" style="width:99%"></div>
+
+              <div class="bloc bloc--z" style="border-style:solid;margin:12px 0">
+                <p class="mini2" style="margin:0">« … relève le plafond de 12 % à compter de l'exercice suivant … »</p>
+                <div class="r" style="gap:6px;margin-top:8px">
+                  <span class="btn">⚑ Annoter</span><span class="btn">Copier avec la source</span><span class="btn">Partager le lien</span>
+                </div>
+                <p class="mini" style="margin:6px 0 0">Passage sélectionné · ancrage § 4</p>
+              </div>
+
+              <div class="ln" style="width:98%"></div><div class="ln" style="width:63%"></div>
+            </div>
+          </div>
+          <div class="barre barre--bas">
+            <span class="mini">Progression 41 %</span>
+            <span class="sp btn">Lire ⇄ Écouter</span>
+            <span class="btn">‹ Retour au sujet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Le sujet reste dessous, intact.</b> Fermer restitue exactement l'état antérieur — toute superposition dont la fermeture détruit du travail est une erreur de conception.</span></li>
+    <li><span class="marq">2</span><span><b>Colonne de lecture à 62–72 signes.</b> Le seul endroit du produit où la famille à empattement s'applique — ici en gris, puisque le système de design n'est pas appliqué.</span></li>
+    <li><span class="marq">3</span><span><b>« Copier avec la source » plutôt que « Copier ».</b> L'attribution est techniquement inséparable de l'extrait : la copie emporte l'organe, la date et l'URL.</span></li>
+    <li><span class="marq">4</span><span><b>La progression est celle de l'item</b>, partagée avec l'écoute — un seul enregistrement par (utilisateur, item), toutes modalités confondues.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 6. DISCOVER ═══════════════ -->
+<section>
+  <h2>6 · Discover <em>→ Panorama · angle mort</em></h2>
+  <div class="map map--x"><span class="map__k">Collision — la plus nette des quatre</span>
+    <b>Il n'existe aucune destination « Découvrir ».</b> La boucle 2 l'exclut, le principe de souveraineté interdit d'injecter une source non choisie. La découverte existe sur trois registres, tous contextuels : découvrir le <b>produit</b> (proposition d'amorçage), découvrir des <b>sujets</b> (par ses propres sources), découvrir des <b>sources</b> (par l'angle mort d'un panorama consulté). Les deux registres dessinables sont ci-dessous.</div>
+
+  <div class="planches">
+
+    <div class="cadre bur" style="max-width:560px"><span class="cadre__t">Sujet → onglet Panorama</span>
+      <div class="barre"><span class="mini">‹ Révision du plafond d'émissions</span></div>
+      <div class="ecran">
+        <div class="seg" style="max-width:440px">
+          <div>Synthèse</div><div>Chronologie</div><div data-on>Panorama</div><div>Couverture</div><div>Mes traces</div>
+        </div>
+
+        <h3 style="margin-top:14px">Répartition éditoriale · 11 éditeurs</h3>
+        <div class="pano">
+          <span style="flex:14">14%</span><span style="flex:21">21%</span><span style="flex:12">12%</span>
+          <span style="flex:18">18%</span><span style="flex:15">15%</span><span style="flex:12">12%</span><span style="flex:8">8%</span>
+        </div>
+        <p class="mini">Légende permanente · mapping conventionnel · <span style="text-decoration:underline">méthodologie</span> · <span style="text-decoration:underline">vue tableau</span></p>
+
+        <h3>Propriété et financement</h3>
+        <div class="pano"><span style="flex:44">Groupe A · 44%</span><span style="flex:31">Groupe B · 31%</span><span style="flex:25">Autres · 25%</span></div>
+        <p class="mini">Plafond de 3 séries — le détail est dans la vue tableau</p>
+
+        <h3>Votre angle mort</h3>
+        <div class="bloc">
+          <p class="ttl--s" style="margin:0 0 6px">Ce sujet est absent de 80 % de vos sources.</p>
+          <p class="mini2" style="margin:0 0 10px">3 éditeurs le couvrent, dont 2 d'une orientation que vous ne suivez pas.</p>
+          <div class="r" style="padding:7px 0;border-top:1px solid var(--z)">
+            <span class="vig">CT</span>
+            <span style="flex:1;font-size:13px">Contexte <span class="mini">· pôle froid · indépendant</span></span>
+            <span class="btn">Ajouter</span><span class="btn">Voir sans suivre</span>
+          </div>
+          <div class="r" style="padding:7px 0;border-top:1px solid var(--z)">
+            <span class="vig">LO</span>
+            <span style="flex:1;font-size:13px">L'Opinion <span class="mini">· pôle chaud · groupe B</span></span>
+            <span class="btn">Ajouter</span><span class="btn">Voir sans suivre</span>
+          </div>
+          <p class="mini" style="margin:10px 0 0"><span style="text-decoration:underline">Ne plus proposer d'éditeur ici</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cadre mob"><span class="cadre__t">Amorçage · première ouverture</span>
+      <div class="ecran">
+        <p class="ttl">Voici ce que nous proposons de suivre.</p>
+        <p class="mini2" style="margin:0 0 12px">Décochez ce que vous ne voulez pas. Rien n'est ajouté sans votre accord.</p>
+        <div class="bloc" style="padding:0">
+          <div class="r" style="padding:8px 10px;border-bottom:1px solid var(--z)">
+            <span class="mini">☑</span><span class="vig">LM</span>
+            <span style="flex:1;font-size:13px">Le Monde <span class="mini">· généraliste</span></span></div>
+          <div class="r" style="padding:8px 10px;border-bottom:1px solid var(--z)">
+            <span class="mini">☑</span><span class="vig">CT</span>
+            <span style="flex:1;font-size:13px">Contexte <span class="mini">· pôle froid</span></span></div>
+          <div class="r" style="padding:8px 10px">
+            <span class="mini">☐</span><span class="vig">LO</span>
+            <span style="flex:1;font-size:13px">L'Opinion <span class="mini">· pôle chaud</span></span></div>
+        </div>
+        <div class="r" style="gap:6px;margin-top:10px">
+          <span class="btn btn--p">Commencer — 3 min</span>
+          <span class="btn">J'ai déjà mes sources</span>
+        </div>
+        <div class="bloc bloc--d" style="margin-top:12px">
+          <p class="mini" style="margin:0">Aucun compte demandé.<br>Aucune notification demandée.<br>La configuration vient après la première session bouclée.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>Le panorama est en mode neutre sur cette planche</b> — les segments sont gris et étiquetés. Le codage couleur est une option, pas le défaut, et il n'est jamais le seul porteur d'information.</span></li>
+    <li><span class="marq">2</span><span><b>L'angle mort est calculé sur VOS sources</b>, pas sur un corpus maison. C'est la différence exacte avec Ground News : le miroir est personnel, donc actionnable.</span></li>
+    <li><span class="marq">3</span><span><b>La proposition nomme l'éditeur et son orientation</b>, jamais « des sources complémentaires ». Et « Ne plus proposer » est définitif pour cet éditeur — une proposition refusée qui revient est une proposition qui ment.</span></li>
+    <li><span class="marq">4</span><span><b>L'amorçage propose, il n'injecte pas.</b> Cases pré-cochées mais visibles et décochables, et une sortie immédiate pour l'utilisateur avancé.</span></li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════ 7. LIBRARY ═══════════════ -->
+<section>
+  <h2>7 · Library <em>→ Bibliothèque</em></h2>
+  <div class="map"><span class="map__k">Correspondance directe</span>
+    Destination ③ — la mémoire. Ce qu'on y trouve, c'est ce qu'on a <b>compris</b>, jamais ce qu'on a mis de côté : il n'y a pas de pile « à lire plus tard » dans ce produit.</div>
+
+  <div class="planches">
+    <div class="cadre bur" style="max-width:640px"><span class="cadre__t">Bureau</span>
+      <div class="barre"><b style="font-size:13px">Bibliothèque</b><span class="sp mini">⌕ Rechercher dans tout ce qui a été consommé</span></div>
+      <div class="ecran">
+        <div class="seg" style="max-width:400px">
+          <div data-on>Annotations</div><div>Documents</div><div>Collections</div><div>Rappels</div>
+        </div>
+
+        <div class="bloc">
+          <p class="mini2" style="margin:0 0 8px;border-left:2px solid var(--b);padding-left:10px">
+            « … relève le plafond de 12 % à compter de l'exercice suivant … »</p>
+          <p class="mini" style="margin:0"><em>Le Monde</em> · 14 août · § 4 · saisi en <b>lecture</b> · <span style="text-decoration:underline">ouvrir la source ↗</span></p>
+          <p class="mini" style="margin:4px 0 0">Sujet : Révision du plafond d'émissions · Collection : Énergie</p>
+        </div>
+
+        <div class="bloc">
+          <p class="mini2" style="margin:0 0 8px;border-left:2px solid var(--b);padding-left:10px">
+            « … le calendrier d'application reste le point de blocage … »</p>
+          <p class="mini" style="margin:0"><em>Contexte</em> · 14 août · 12 min 47 · saisi à <b>l'oreille</b> · <span style="text-decoration:underline">ouvrir la source ↗</span></p>
+          <p class="mini" style="margin:4px 0 0">Note : « vérifier la date exacte avant publication »</p>
+        </div>
+
+        <div class="bloc bloc--d">
+          <p class="mini" style="margin:0"><b>La même entité dans les deux cas.</b> Une annotation posée à l'oreille se retrouve à la bonne position dans le texte — c'est la preuve de l'ancrage canonique unique.</p>
+        </div>
+
+        <div class="bloc">
+          <div class="r"><span style="font-size:13px;font-weight:600">Synchronisation</span>
+            <span class="sp mini">Obsidian ✓ · Notion ✓ · Markdown ✓</span></div>
+          <div class="r" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--z)">
+            <span style="font-size:13px">Notion — échec il y a 2 h</span>
+            <span class="sp btn">Relancer</span>
+          </div>
+          <p class="mini" style="margin:6px 0 0">Un échec de synchronisation est toujours visible et relançable. Jamais silencieux.</p>
+        </div>
+
+        <div class="bloc bloc--d">
+          <p class="mini" style="margin:0"><b>Ce qui n'existe pas ici :</b> aucune pile « à lire plus tard », aucun classement automatique, aucun compteur d'éléments non traités. Reporter est une opération de file, avec une échéance — pas une entrée de bibliothèque.</p>
+        </div>
+      </div>
+      <div class="nav"><div>Aujourd'hui</div><div>Sujets</div><div data-on>Bibliothèque</div><div>Sources</div></div>
+    </div>
+  </div>
+
+  <ul class="leg">
+    <li><span class="marq">1</span><span><b>La modalité de capture est affichée</b> — « en lecture » / « à l'oreille ». C'est une information de confiance : elle dit à l'utilisateur d'où vient l'ancrage.</span></li>
+    <li><span class="marq">2</span><span><b>Chaque annotation porte sa source complète</b> : organe, date, ancrage, lien. Une annotation dont l'URL ne remonte pas est un défaut, pas une dégradation acceptable.</span></li>
+    <li><span class="marq">3</span><span><b>L'état de synchronisation est un élément d'interface</b>, pas un réglage caché. Une annotation perdue est une rupture de confiance irrécupérable.</span></li>
+    <li><span class="marq">4</span><span><b>Les collections sont manuelles.</b> Un classement automatique recréerait un algorithme de curation — exactement ce que le produit refuse ailleurs.</span></li>
+  </ul>
+</section>
+
+
+<section>
+  <h3>Ce que ces wireframes ne montrent pas</h3>
+  <div class="tbl-env"><table class="tbl">
+    <thead><tr><th>Absent</th><th>Pourquoi</th></tr></thead>
+    <tbody>
+      <tr><td>L'ordre de la file</td><td>L'ordonnanceur n'est toujours pas tranché. Les planches montrent une file <b>ordonnée et finie</b> — ce que le contrat garantit — sans prétendre au critère de tri.</td></tr>
+      <tr><td>Sources · Réglages</td><td>Hors de la liste demandée. La destination ④ et les réglages restent à dessiner.</td></tr>
+      <tr><td>Chronologie · Couverture · Mes traces</td><td>Trois des cinq vues d'un Sujet. Seule Synthèse est dessinée, parce que c'est celle qui porte la thèse.</td></tr>
+      <tr><td>Toute couleur, toute police de lecture</td><td>Délibéré. Le système de design existe (boucle 3) ; l'appliquer ici masquerait les problèmes de structure derrière une apparence finie.</td></tr>
+      <tr><td>Les états de chargement</td><td>À l'exception de la génération vocale, qui est un cas de conception à part entière et non un délai technique.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  Prisme · boucle 5. Un fichier HTML, aucun script, aucune image, aucun asset externe. Les quatre collisions de nommage — Feed, Podcast, Article, Discover — sont traitées à découvert : elles indiquent où l'architecture s'écarte des habitudes de la catégorie, ce qui est précisément l'endroit où il faut regarder.
+</footer>
+
+</div>

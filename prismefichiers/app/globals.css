@@ -1,0 +1,219 @@
+@import 'tailwindcss';
+
+/*
+ * Les jetons de la boucle 3 sont la SEULE source de vérité.
+ * Tailwind v4 étant piloté par le CSS, `@theme` les expose directement en
+ * utilitaires : pas de duplication entre un fichier de config et un fichier
+ * de design. `bg-surface`, `text-encre-2`, `rounded-l` viennent d'ici.
+ */
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  /* Neutres — gris légèrement chauds (OKLCH ≈ 90°, chroma ≤ 0,012) */
+  --color-n-0: #ffffff;
+  --color-n-25: #faf9f6;
+  --color-n-50: #f7f6f3;
+  --color-n-100: #efede8;
+  --color-n-150: #e3e1db;
+  --color-n-200: #d5d2ca;
+  --color-n-300: #b8b4aa;
+  --color-n-400: #96928a;
+  --color-n-450: #8a867e;
+  --color-n-500: #78746d;
+  --color-n-600: #5c5953;
+  --color-n-700: #44423d;
+  --color-n-800: #2c2b28;
+  --color-n-900: #1a1a18;
+
+  /* Rôles — redéfinis par thème plus bas */
+  --color-plan: var(--role-plan);
+  --color-surface: var(--role-surface);
+  --color-survol: var(--role-survol);
+  --color-enfonce: var(--role-enfonce);
+  --color-encre: var(--role-encre);
+  --color-encre-2: var(--role-encre-2);
+  --color-encre-3: var(--role-encre-3);
+  --color-encre-4: var(--role-encre-4);
+  --color-encre-inv: var(--role-encre-inv);
+  --color-filet: var(--role-filet);
+  --color-bord: var(--role-bord);
+
+  /* Iris — trois emplois autorisés : focus, progression de session,
+     bascule de modalité. Pas un de plus. */
+  --color-iris: var(--role-iris);
+  --color-iris-encre: var(--role-iris-encre);
+
+  /* Statut — toujours accompagné d'une icône ET d'un libellé */
+  --color-st-bon: #0ca30c;
+  --color-st-avert: #fab219;
+  --color-st-serieux: #ec835a;
+  --color-st-critique: #d03b3b;
+
+  /* Panorama — famille analytique, validée par exécution du validateur.
+     Barrière stricte : jamais dans l'interface, jamais l'inverse. */
+  --color-pano-froid-3: var(--role-pf3);
+  --color-pano-froid-2: var(--role-pf2);
+  --color-pano-froid-1: var(--role-pf1);
+  --color-pano-centre: var(--role-pc);
+  --color-pano-chaud-1: var(--role-pch1);
+  --color-pano-chaud-2: var(--role-pch2);
+  --color-pano-chaud-3: var(--role-pch3);
+  --color-pano-cat-1: var(--role-pcat1);
+  --color-pano-cat-2: var(--role-pcat2);
+  --color-pano-cat-3: var(--role-pcat3);
+
+  --font-interface: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter',
+    'Segoe UI', Roboto, sans-serif;
+  --font-lecture: ui-serif, Charter, 'Bitstream Charter', 'Source Serif 4',
+    Georgia, serif;
+  --font-donnees: ui-monospace, 'SF Mono', 'JetBrains Mono', monospace;
+
+  --radius-xs: 6px;
+  --radius-s: 10px;
+  --radius-m: 14px;
+  --radius-l: 20px;
+  --radius-xl: 28px;
+
+  --shadow-flottant: 0 1px 2px rgb(26 26 24 / 0.06), 0 8px 28px rgb(26 26 24 / 0.1);
+
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* ─── Thème clair (défaut) ─────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+  --role-plan: #f7f6f3;
+  --role-surface: #ffffff;
+  --role-survol: #faf9f6;
+  --role-enfonce: #efede8;
+  --role-encre: #1a1a18;
+  --role-encre-2: #5c5953;
+  --role-encre-3: #78746d;
+  --role-encre-4: #96928a;
+  --role-encre-inv: #ffffff;
+  --role-filet: #e3e1db;
+  --role-bord: #8a867e;
+  --role-iris: #4a5bd4;
+  --role-iris-encre: #ffffff;
+  --role-pf3: #4a3aa7;
+  --role-pf2: #7a6bd8;
+  --role-pf1: #a99ee4;
+  --role-pc: #cbc8bf;
+  --role-pch1: #d89c48;
+  --role-pch2: #c07d22;
+  --role-pch3: #8f5410;
+  --role-pcat1: #2a78d6;
+  --role-pcat2: #eb6834;
+  --role-pcat3: #1baf7a;
+}
+
+/* Étapes choisies pour la surface sombre — pas une inversion automatique. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --role-plan: #0e0e0d;
+    --role-surface: #1a1a18;
+    --role-survol: #222220;
+    --role-enfonce: #222220;
+    --role-encre: #f5f4f0;
+    --role-encre-2: #96928a;
+    --role-encre-3: #78746d;
+    --role-encre-4: #5c5953;
+    --role-encre-inv: #111114;
+    --role-filet: #2c2b28;
+    --role-bord: #6e6a63;
+    --role-iris: #8a97f0;
+    --role-iris-encre: #111114;
+    --role-pf3: #b3a9f2;
+    --role-pf2: #8a7de0;
+    --role-pf1: #6a5fc0;
+    --role-pc: #54534e;
+    --role-pch1: #8a5614;
+    --role-pch2: #c0842c;
+    --role-pch3: #e5af5e;
+    --role-pcat1: #3987e5;
+    --role-pcat2: #d95926;
+    --role-pcat3: #199e70;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --role-plan: #0e0e0d;
+  --role-surface: #1a1a18;
+  --role-survol: #222220;
+  --role-enfonce: #222220;
+  --role-encre: #f5f4f0;
+  --role-encre-2: #96928a;
+  --role-encre-3: #78746d;
+  --role-encre-4: #5c5953;
+  --role-encre-inv: #111114;
+  --role-filet: #2c2b28;
+  --role-bord: #6e6a63;
+  --role-iris: #8a97f0;
+  --role-iris-encre: #111114;
+  --role-pf3: #b3a9f2;
+  --role-pf2: #8a7de0;
+  --role-pf1: #6a5fc0;
+  --role-pc: #54534e;
+  --role-pch1: #8a5614;
+  --role-pch2: #c0842c;
+  --role-pch3: #e5af5e;
+  --role-pcat1: #3987e5;
+  --role-pcat2: #d95926;
+  --role-pcat3: #199e70;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-interface);
+    font-variant-numeric: tabular-nums;
+  }
+  body {
+    background: var(--color-plan);
+    color: var(--color-encre);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Focus toujours visible. Jamais outline:none. */
+  :where(a, button, [role='button'], input, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-iris);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+@layer components {
+  /*
+   * S3 / A4 — l'incertitude est une TEXTURE, jamais une couleur.
+   * Un jaune d'alerte dirait « anomalie » ; or le système fait son travail
+   * en refusant de fusionner sous le seuil. La hachure survit au daltonisme,
+   * au mode sombre, à l'impression et à forced-colors.
+   */
+  .marque-incertitude {
+    border: 1.5px solid transparent;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--color-bord) 0 1.5px,
+      transparent 1.5px 6px
+    );
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .marque-incertitude {
+    forced-color-adjust: none;
+    border-style: dashed;
+  }
+}
